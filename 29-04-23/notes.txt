@@ -54,6 +54,15 @@ Event Driven programming
 //Event Emitter will emit an object whenever is is available in non-blocking mode 
 //Event emitter also have listener to Received the data.
 ==================================
+package.json 
+//configuration file 
+//To start the application 
+//to install third part package.
+To create package.json file 
+1.cmd:npm init (package.json file)
+2.create one file index.js 
+3.add start command in package.json 
+===========================================
 
 
 
