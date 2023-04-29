@@ -48,4 +48,13 @@ cmd:node -v
 version 16 or 18
 ===============================
 Event Driven programming 
+//nodejs is also event driven programming 
+//we have event driven because of async in nature 
+//we have Event Emitter concept inside the nodejs to run async code example: file system,Operating system.
+//Event Emitter will emit an object whenever is is available in non-blocking mode 
+//Event emitter also have listener to Received the data.
+==================================
+
+
+
 
