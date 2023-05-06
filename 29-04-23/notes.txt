@@ -8,7 +8,7 @@ Basic Foundation of javascript:
 7.async and await 
 8.import and export 
 9.callback function 
-10.restapi call /fetch method 
+10.restapi call
 ====================================
 Nodejs: 
 1.serverside language 
@@ -16,6 +16,7 @@ Nodejs:
 3.underlying architecture of nodejs is written in c++
 =====================================
 Before 2008 you can run javascript only on browsers 
+with the help of nodejs you can run javascript outside the browser
 command to run node :
 cmd:node filename.js 
 =============================================
