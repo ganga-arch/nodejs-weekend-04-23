@@ -24,5 +24,22 @@ const writeFile=()=>{
         console.log("file created successfully");
      })
 }
-writeFile();
+// writeFile();
 console.log("line 12");
+
+const readFileSync=()=>{
+    return fs.readFileSync('./data/input.txt').toString();
+}
+
+
+
+const appendFile=()=>{
+     
+    fs.appendFile('./data/read.txt',readFileSync(),'utf8',(err)=>{
+        if(err){
+           return console.log(err);
+        }
+        console.log("file appended successfully");
+    })
+}
+appendFile();
