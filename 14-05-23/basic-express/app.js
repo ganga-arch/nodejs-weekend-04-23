@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 
-const products =[
+let products =[
     {
         id:1,
         name:"lenevo",
@@ -48,6 +48,25 @@ app.post('/product',(req,res)=>{
     res.status(201).json({
         message:"Data is created"
     })
+})
+
+//params
+app.delete('/:id',(req,res)=>{
+    console.log(req.params);
+    let id = Number(req.params.id);
+    let result = products.filter((obj)=>obj.id === id);
+    console.log(result);
+    products = products.filter((obj)=>obj.id != id);
+    if(result.length>0){
+        res.status(200).json({
+            message:"Data is deleted successfully"
+        })
+    }else{
+        res.status(400).json({
+            message:"Not able to find the id"
+        })
+    }
+    
 })
 
 
