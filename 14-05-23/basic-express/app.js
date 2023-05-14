@@ -16,6 +16,17 @@ const products =[
     }
 ]
 
+//middleware
+//all incoming request will pass through this function
+app.use((req,res,next)=>{
+    console.log("first middleware");
+    next();
+})
+
+//to parse json data
+app.use(express.json());
+
+
 //api to get the details
 app.get('',(req,res)=>{
     //req - request object 
@@ -28,6 +39,15 @@ app.get('/product',(req,res)=>{
     message:"fetching is successfull",
     product:products
    })
+})
+
+app.post('/product',(req,res)=>{
+    console.log(req.body);
+    let id = products.length + 1;
+    products.push({id,...req.body});
+    res.status(201).json({
+        message:"Data is created"
+    })
 })
 
 
