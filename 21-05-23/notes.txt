@@ -44,3 +44,50 @@ Mongodb
 2.No Relationship
 3.Easy for horizontal scaling.
 
+=================================
+Installing Mongdb:
+1.Install 64bit software from official website 
+2.After installion please install GUI - Compass 
+3.C-->data folder -->db 
+======================================
+Database - collection
+Example:
+Database - Flipkart 
+collections - register,payment,electrical_appliance
+document 
+//A set of records 
+{
+    fullName:"suresh"
+    age:22
+}
+Datatypes:
+1.String
+2.Boolean 
+3.Number 
+4.Date 
+5.Array 
+6.Object 
+================================
+Mongoose:
+//All methods will return promise.
+//create 
+save() 
+//read 
+find()
+//update
+findByIdAndUpdate()
+//delete 
+findByIdAndDelete() 
+=======================================
+Unique Key for all document 
+//Mongodb will create primary key for you _id 
+==============================================
+Mongoose Schema 
+//Design of collections 
+//Will setup what type of data to store inside the database 
+//Similar to class concept.
+==================================
+Install two packages:
+1.npm i mongoose 
+2.npm i express 
+
