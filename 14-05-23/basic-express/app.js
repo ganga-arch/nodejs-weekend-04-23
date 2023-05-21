@@ -56,8 +56,8 @@ app.delete('/:id',(req,res)=>{
     let id = Number(req.params.id);
     let result = products.filter((obj)=>obj.id === id);
     console.log(result);
-    products = products.filter((obj)=>obj.id != id);
     if(result.length>0){
+        products = products.filter((obj)=>obj.id != id);
         res.status(200).json({
             message:"Data is deleted successfully"
         })
