@@ -41,6 +41,7 @@ app.get('', async (req,res)=>{
 
     const result = await Employee.find();
 
+
     res.status(200).json(result);
 
    }catch(err){
@@ -61,6 +62,20 @@ app.delete('/:id',async (req,res)=>{
             err:err
         })
       }
+})
+
+app.put('/:firstName', async (req,res)=>{
+    try{
+        let filter={firstName:req.params.firstName};
+        let query= req.body;
+        let result = await Employee.findOneAndUpdate(filter,query,{new:true})
+        res.status(200).json(result);
+
+    }catch(err){
+        res.status(400).json({
+            err:err
+        })
+    }
 })
 
 app.listen(3000,()=>{
