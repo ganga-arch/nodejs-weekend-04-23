@@ -18,3 +18,14 @@ json:
 
 mongoose - ODM - Object Data Modelling 
 Nodejs -- expressjs-- mongoose --- mongodb
+==========================================
+PostMan:
+url:http://localhost:3000
+method:POST 
+body:
+{
+    "firstName": "akash",
+    "agae": 23,
+    "salary": 34000
+}
+=====================================
