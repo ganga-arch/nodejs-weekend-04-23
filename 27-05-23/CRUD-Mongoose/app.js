@@ -51,6 +51,18 @@ app.get('', async (req,res)=>{
 
 })
 
+app.delete('/:id',async (req,res)=>{
+      try{
+
+        await Employee.findByIdAndDelete(req.params.id);
+        res.status(200).json({message:"Data is deleted successfully"});
+      }catch(err){
+        res.status(400).json({
+            err:err
+        })
+      }
+})
+
 app.listen(3000,()=>{
  console.log("server is running");
 });
