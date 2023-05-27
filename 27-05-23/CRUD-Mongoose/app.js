@@ -36,7 +36,18 @@ app.post('',async (req,res)=>{
 
 })
 
-app.get('',(req,res)=>{
+app.get('', async (req,res)=>{
+   try{
+
+    const result = await Employee.find();
+
+    res.status(200).json(result);
+
+   }catch(err){
+    res.status(400).json({
+        err:err
+     })
+   }
 
 })
 
