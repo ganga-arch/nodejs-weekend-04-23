@@ -99,6 +99,27 @@ app.post('/register', async (req,res)=>{
     }
 })
 
+app.post('/login',async (req,res)=>{
+   try{
+    const result = await User.findOne({email:req.body.email});
+    if(!result){
+        return res.status(400).json({message:"email is not found"})
+    }
+    console.log(req.body.password,result.password);
+    let comparePassword = await bcrypt.compare(req.body.password,result.password);
+    if(!comparePassword){
+        return res.status(400).json({message:"password is not found"})
+    }
+    return res.status(200).json({
+        message:'successfully login'
+    })
+   }catch(err){
+    res.status(400).json({
+        err:err
+    })
+   }  
+})
+
 app.listen(3000,()=>{
  console.log("server is running");
 });
