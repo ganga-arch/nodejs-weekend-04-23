@@ -19,12 +19,33 @@ const validationMiddleware=(req,res,next)=>{
     try{
         const token = req.headers.authorization;
         const decode = jwt.verify(token,'credo_secret');
+        console.log("decode",decode);
         req.email = decode.email;
+        req.roles = decode.roles;
         next();
     }catch(err){
         res.status(400).json({
             message:"token is invalid"
         })
+    }
+}
+
+const authorizationDeleteMiddleware=(req,res,next)=>{
+    try{
+        for(let obj of req.roles){
+            console.log(obj);
+            if(['admin','superadmin'].includes(obj)){
+               return next();
+            }
+        }
+        return res.status(400).json({
+            message:"roles not matched"
+        })
+   
+    }catch(err){
+        res.status(400).json({
+            message:"internal server error"
+        })  
     }
 }
 
@@ -68,7 +89,7 @@ app.get('',validationMiddleware, async (req,res)=>{
 
 })
 
-app.delete('/:id',validationMiddleware,async (req,res)=>{
+app.delete('/:id',validationMiddleware,authorizationDeleteMiddleware,async (req,res)=>{
       try{
 
         await Employee.findByIdAndDelete(req.params.id);
@@ -124,7 +145,7 @@ app.post('/login',async (req,res)=>{
     if(!comparePassword){
         return res.status(400).json({message:"password is not found"})
     }
-    const token = jwt.sign({email:result.email},'credo_secret',{expiresIn:'1h'});
+    const token = jwt.sign({email:result.email,roles:result.roles},'credo_secret',{expiresIn:'1h'});
 
     return res.status(200).json({
         message:'successfully login',
