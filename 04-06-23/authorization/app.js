@@ -15,7 +15,20 @@ mongoose.connect("mongodb://localhost:27017/credo").then(()=>{
 
 app.use(express.json());
 
-app.post('',async (req,res)=>{
+const validationMiddleware=(req,res,next)=>{
+    try{
+        const token = req.headers.authorization;
+        const decode = jwt.verify(token,'credo_secret');
+        req.email = decode.email;
+        next();
+    }catch(err){
+        res.status(400).json({
+            message:"token is invalid"
+        })
+    }
+}
+
+app.post('',validationMiddleware,async (req,res)=>{
     
     try{
         const result = new Employee({
@@ -39,7 +52,7 @@ app.post('',async (req,res)=>{
 
 })
 
-app.get('', async (req,res)=>{
+app.get('',validationMiddleware, async (req,res)=>{
    try{
 
     const result = await Employee.find();
@@ -55,7 +68,7 @@ app.get('', async (req,res)=>{
 
 })
 
-app.delete('/:id',async (req,res)=>{
+app.delete('/:id',validationMiddleware,async (req,res)=>{
       try{
 
         await Employee.findByIdAndDelete(req.params.id);
@@ -67,7 +80,7 @@ app.delete('/:id',async (req,res)=>{
       }
 })
 
-app.put('/:firstName', async (req,res)=>{
+app.put('/:firstName',validationMiddleware, async (req,res)=>{
     try{
         let filter={firstName:req.params.firstName};
         let query= req.body;
@@ -117,7 +130,7 @@ app.post('/login',async (req,res)=>{
         message:'successfully login',
         token:token
     })
-    
+
    }catch(err){
     res.status(400).json({
         err:err
