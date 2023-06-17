@@ -1,7 +1,7 @@
 const express = require('express');
 const hbs = require('express-handlebars');
 const app = express();
-
+const path  = require('path');
 app.engine('hbs',hbs.engine({
     defaultLayout:'main',
     extname:'.hbs'
@@ -9,7 +9,7 @@ app.engine('hbs',hbs.engine({
 
 app.set('view engine','hbs');
 
-app.use(express.static(__dirname + '/views'));
+
 
 
 app.get('/',(req,res)=>{
