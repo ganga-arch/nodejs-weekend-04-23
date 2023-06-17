@@ -28,7 +28,12 @@ app.post('/upload',(req,res)=>{
 });
 
 app.get('/download',(req,res)=>{
-      res.send("download");
+      res.download(__dirname+"/uploads/notes.txt",(err)=>{
+        if(err){
+            console.log("error",err);
+            res.send("failed");
+        }    
+      })
 })
 
 app.get('/',(req,res)=>{
