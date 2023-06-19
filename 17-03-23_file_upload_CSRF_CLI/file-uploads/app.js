@@ -13,7 +13,6 @@ app.post('/upload',(req,res)=>{
         console.log(uploadedFile);
 
         const uploadPath = __dirname + "/uploads/"+ uploadedFile.name;
-
         uploadedFile.mv(uploadPath,(err)=>{
             if(err){
                 res.send("failed");

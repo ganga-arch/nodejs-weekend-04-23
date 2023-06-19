@@ -18,6 +18,7 @@ app.get('/form',csrfProtection,(req,res)=>{
 
 app.post('/process',parseForm,csrfProtection,(req,res)=>{
       try{
+        console.log(req.body);
      res.send("successfully validated");
       }catch(err){
         res.send("invalid html");
